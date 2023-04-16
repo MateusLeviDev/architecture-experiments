@@ -10,3 +10,4 @@ Basic entity checklist:
 - Getters & Setters (collections: only get)
 - hashCode & equals
 - Serializable
+- spring booot
