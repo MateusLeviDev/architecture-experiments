@@ -11,3 +11,5 @@ Basic entity checklist:
 - hashCode & equals
 - Serializable
 - spring booot
+
+![image](https://user-images.githubusercontent.com/101754313/232646558-731149fc-c01b-4432-af6d-6b9e65c57e8b.png)
