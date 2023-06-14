@@ -10,7 +10,7 @@ import java.util.UUID;
 @Table(name = "TB_PRODUCTS")
 public class ProductModel implements Serializable {
 
-    private static final long seriaVersionID = 1L; //número de controle de versão
+    private static final long serialVersionID = 1L; //número de controle de versão
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
