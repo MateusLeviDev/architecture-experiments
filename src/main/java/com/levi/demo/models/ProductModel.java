@@ -1,13 +1,14 @@
 package com.levi.demo.models;
 
 import jakarta.persistence.*;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity(name = "TB_PRODUCTS")
-public class ProductModel implements Serializable {
+public class ProductModel extends RepresentationModel<ProductModel> implements Serializable {
 
     private static final long serialVersionID = 1L; //número de controle de versão
 
