@@ -1,6 +1,6 @@
-package com.demo.service;
+package com.ms.producer.service;
 
-import com.demo.domain.ProductRequestDTO;
+import com.ms.producer.domain.ProductRequestDTO;
 
 public interface ProductService {
 

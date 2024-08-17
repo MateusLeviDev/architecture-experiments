@@ -1,8 +1,8 @@
-package com.demo.service.impl;
+package com.ms.producer.service.impl;
 
-import com.demo.domain.ProductRequestDTO;
-import com.demo.service.ProductCreatedEvent;
-import com.demo.service.ProductService;
+import com.ms.core.domain.ProductCreatedEvent;
+import com.ms.producer.domain.ProductRequestDTO;
+import com.ms.producer.service.ProductService;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 

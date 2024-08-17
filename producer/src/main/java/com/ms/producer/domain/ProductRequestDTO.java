@@ -1,4 +1,4 @@
-package com.demo.domain;
+package com.ms.producer.domain;
 
 import java.math.BigDecimal;
 

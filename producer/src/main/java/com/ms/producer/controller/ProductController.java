@@ -1,7 +1,7 @@
-package com.demo.controller;
+package com.ms.producer.controller;
 
-import com.demo.domain.ProductRequestDTO;
-import com.demo.service.ProductService;
+import com.ms.producer.domain.ProductRequestDTO;
+import com.ms.producer.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
