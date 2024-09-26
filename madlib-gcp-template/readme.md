@@ -1,9 +1,10 @@
-#### consumer template 
+#### producer template
 
-quando criar um topic, pelo menos no console da google, vai ser auto associado a ele uma sub "-sub" no 
-final do seu nome.
+- teste debug pubsub topic
+![img_1.png](img_1.png)
 
-![img.png](img.png)
+- log local
+![img_2.png](img_2.png)
 
-- ainda falta alguns testes
-- ajustes erros
+- db
+![img_3.png](img_3.png)
