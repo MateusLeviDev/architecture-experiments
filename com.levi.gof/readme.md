@@ -37,6 +37,11 @@ Generics aplicados ao tipo TariffContract: Através do uso de T extends CustomTa
 
 Interface implementada: TariffContractService também está implementando a interface CustomTariffService, o que obriga a classe a fornecer implementações para os métodos definidos na interface. Essa interface é provavelmente um contrato que todas as classes que fornecem serviços relacionados a tarifas customizadas devem seguir, garantindo um certo comportamento.
 
+- o que é template method? template é um design pattern que permite definir contratos padrao que seu algortimo ira usar.
+- o que é classe abstrata? classe que define um contrato. nao pode ser instanciada e pode ter implementação. diferente de uma interface. fornecer uma Estrutura Comum
+a classe pode conter métodos publicos abstratos para que suas classes que herdam implementem
+- o que é o protected? pode usar no mesmo pacote, classe e subclasse. til quando você quer permitir que subclasses acessem certos métodos ou atributos
+- o que é o polimorfismo? permite que métodos com o mesmo nome se comportem de maneira diferente. ou seja chamar os metodos porem por classes diferentes.  ocorre quando as classes estendem uma classe base ou implementam uma interface.
 
 
 
