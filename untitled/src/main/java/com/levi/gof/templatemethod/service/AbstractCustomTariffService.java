@@ -4,9 +4,7 @@ import com.levi.gof.templatemethod.model.CustomTariff;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.PrintStream;
 import java.math.BigDecimal;
-import java.util.Objects;
 import java.util.Optional;
 
 @Getter

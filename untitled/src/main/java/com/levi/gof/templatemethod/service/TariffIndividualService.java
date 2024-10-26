@@ -1,14 +1,12 @@
 package com.levi.gof.templatemethod.service;
 
 import com.levi.gof.templatemethod.model.CustomTariff;
-import com.levi.gof.templatemethod.model.TariffContract;
 import com.levi.gof.templatemethod.model.TariffIndividualClient;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.levi.gof.templatemethod.contants.ApiConstants.TARIFF_CONTRACT;
 import static com.levi.gof.templatemethod.contants.ApiConstants.TARIFF_INDIVIDUAL_CLIENT;
 
 public class TariffIndividualService extends AbstractCustomTariffService<TariffIndividualClient> implements
