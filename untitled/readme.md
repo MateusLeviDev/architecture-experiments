@@ -62,8 +62,11 @@ The Command design pattern is a behavioral pattern used in Java programming. It 
 - `invoker`: i consider it a callback functionality.
 permite definir uma função ou método a ser executado em resposta a um evento ou ao término de outra operação. executa determinado processo (executar procedures, por exemplo, dentre outras possibilidades) em resposta a eventos assíncronos, por exemplo consumindo data de um pub sub, dentre outras possibilidades
 - você cria uma classe de comando específica para cada ação. Em vez de chamar diretamente o método para realizar uma tarefa, você cria um objeto dessa classe de comando e passa esse objeto para o "invoker" (o objeto que sabe como e quando executar o comando). Dessa forma, o comando em si está "encapsulado" em um objeto — ele contém a solicitação e os dados necessários para executá-la.
+
 <br>
+
 - `undoredo`: a Wizard casts spells on a Goblin. Each spell is a command object that can be executed and undone, demonstrating the core principles of the Command pattern in Java. The spells are executed on the goblin one by one. The first spell shrinks the goblin and the second makes him invisible. Then the wizard reverses the spells one by one. Each spell here is a command object that can be undone.
 <br>
 
 - o que é o command? o command é um behavioral pattern. que encapsula a request (o command, a key) como um objeto e a partir disso executa determinada ação. como um algoritmo de callback, onde recebe na request um objeto X o codigo processa (faz o parse pra qual command) aquele objeto atribuindo assim uma key pra ele, ou seja, montamos o Invoker com base nessas infos, que vai determinar qual ação será feita. 
+- Qual é o papel do "Receiver" no padrão Command, e por que ele é separado do "Invoker"? O "Receiver" no padrão Command é o objeto que executa a ação real solicitada pelo comando. Ele possui os métodos específicos que realizam o trabalho
