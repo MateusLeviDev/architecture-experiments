@@ -39,7 +39,6 @@
             <version>1.18.30</version>
             <optional>true</optional>
         </dependency>
-
     </dependencies>
 
 </project>
