@@ -107,3 +107,78 @@ Use the Adapter pattern in Java when
     You want to create a reusable class that cooperates with unrelated or unforeseen classes, that is, classes that don't necessarily have compatible interfaces
     You need to use several existing subclasses, but it's impractical to adapt their interface by subclassing everyone. An object adapter can adapt the interface of its parent class.
     Most of the applications using third-party libraries use adapters as a middle layer between the application and the 3rd party library to decouple the application from the library. If another library has to be used only an adapter for the new library is required without having to change the application code.
+
+
+
+A Arquitetura Onion e o Domain-Driven Design (DDD) são abordagens que ajudam a estruturar sistemas complexos, mas com focos ligeiramente diferentes.
+
+    Arquitetura Onion: É um padrão arquitetural que se concentra em isolar a lógica de negócios do sistema, mantendo o domínio central livre de dependências externas (como frameworks, bancos de dados e interfaces de usuário). A arquitetura se organiza em camadas concêntricas, com o domínio no núcleo, e cada camada pode depender apenas de camadas mais internas.
+
+    Domain-Driven Design (DDD): É uma abordagem de modelagem de software que se concentra no entendimento e representação dos conceitos de domínio de negócios diretamente no código. O DDD promove o uso de entidades de domínio, agregados, repositórios e serviços de domínio, além de práticas como Bounded Contexts e Ubiquitous Language.
+
+Enquanto a Arquitetura Onion é mais uma estrutura técnica para organizar e desacoplar camadas, o DDD é uma metodologia de modelagem que se aplica ao núcleo do negócio em si.
+Diferenças entre Arquitetura Onion e DDD
+Aspecto	Arquitetura Onion	Domain-Driven Design (DDD)
+Foco principal	Desacoplamento e independência das camadas	Modelagem e alinhamento com o domínio de negócios
+Núcleo do sistema	Lógica de negócios isolada das infraestruturas	Entidades e conceitos específicos do domínio
+Organização por camadas	Estrutura concêntrica onde cada camada depende da interna	Estrutura organizacional em torno de conceitos do domínio
+Dependências externas	Dependências limitadas a camadas externas	Dependências organizadas por Bounded Contexts
+Objetivo	Manter o domínio isolado para flexibilidade e teste	Facilitar entendimento, comunicação e evolução do sistema
+Exemplo de Estrutura de Pastas para Arquitetura Onion
+
+Na Arquitetura Onion, o sistema pode ser organizado em camadas como:
+
+```
+src/
+└── main/
+└── java/
+└── com/
+└── exemplo/
+├── domain/                 # Núcleo do domínio, independente de outras camadas
+│   ├── model/              # Entidades e classes do domínio
+│   └── service/            # Lógica de negócios pura
+│
+├── application/            # Orquestração de casos de uso (regras de aplicação)
+│   └── service/            # Serviços de aplicação, interagem com o domínio
+│
+├── infrastructure/         # Integrações e dependências externas
+│   ├── repository/         # Implementação de repositórios (interface com banco de dados)
+│   └── config/             # Configurações (banco de dados, API externas)
+│
+└── api/                    # Interface de usuário (controllers, REST APIs, etc.)
+└── controller/
+```
+
+Exemplo de Estrutura de Pastas para DDD
+
+Em um projeto orientado por DDD, a estrutura se organiza em torno de contextos delimitados (Bounded Contexts) e conceitos do domínio:
+
+```
+src/
+└── main/
+└── java/
+└── com/
+└── exemplo/
+└── vendas/                     # Um contexto delimitado (bounded context) "Vendas"
+├── domain/
+│   ├── model/              # Entidades, Agregados e Value Objects
+│   └── service/            # Serviços de domínio (lógica do negócio)
+│
+├── application/
+│   ├── service/            # Casos de uso específicos, interagem com o domínio
+│   └── dto/                # Objetos de transferência de dados
+│
+├── infrastructure/
+│   ├── repository/         # Implementação de repositórios
+│   └── config/             # Configurações de infraestrutura
+│
+└── api/
+└── controller/         # Pontos de entrada para APIs
+```
+
+Resumo das Estruturas
+
+    Arquitetura Onion organiza-se em camadas, garantindo que o domínio permaneça livre de dependências externas.
+    DDD organiza-se ao redor dos conceitos do domínio e Bounded Contexts, com entidades, serviços e repositórios específicos para cada área do negócio.
+
+Ambas as abordagens podem ser combinadas em um projeto, onde a Arquitetura Onion pode ser aplicada dentro de cada Bounded Context do DDD. Essa combinação permite um sistema modular, com o domínio bem isolado, ao mesmo tempo que organiza as funcionalidades de acordo com o negócio.
