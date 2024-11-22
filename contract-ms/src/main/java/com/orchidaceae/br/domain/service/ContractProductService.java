@@ -4,18 +4,27 @@ import com.orchidaceae.br.api.dto.request.ContractProductRequestDTO;
 import com.orchidaceae.br.domain.gateway.ProductGateway;
 import com.orchidaceae.br.domain.model.ContractProduct;
 import com.orchidaceae.br.domain.repository.ContractProductRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.cloud.stream.messaging.Processor;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ContractProductService {
 
     private final ProductGateway productGateway;
     private final ContractProductRepository contractProductRepository;
     private final ContractService contractService;
+    private final Processor processor;
+
+    public ContractProductService(ProductGateway productGateway, ContractProductRepository contractProductRepository, ContractService contractService, Processor processor) {
+        this.productGateway = productGateway;
+        this.contractProductRepository = contractProductRepository;
+        this.contractService = contractService;
+        this.processor = processor;
+    }
 
     public ContractProduct attachProductToContract(
             final Long contractId,
@@ -39,7 +48,20 @@ public class ContractProductService {
                 .startDate(contractProductRequestDTO.startDate())
                 .build();
 
+        publishToKafka(contractProduct);
+
         return contractProductRepository.save(contractProduct);
+    }
+
+    private void publishToKafka(ContractProduct contractProduct) {
+        Message<ContractProduct> message = MessageBuilder
+                .withPayload(contractProduct)
+                .build();
+
+        boolean sent = processor.output().send(message);
+        if (!sent) {
+            throw new RuntimeException("Failed to send to Kafka");
+        }
     }
 
     public List<ContractProduct> findContractProductByProductId(final Long productId) {

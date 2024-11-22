@@ -15,7 +15,7 @@ public class RestClientConfig {
     @Bean
     public ProductMS productMS() {
         RestClient restClient = RestClient.builder()
-                .baseUrl("http://localhost:8080")
+                .baseUrl("http://localhost:7000")
                 .build();
         var restClientAdapter = RestClientAdapter.create(restClient);
         var httpServiceProxyFactory = HttpServiceProxyFactory.builderFor(restClientAdapter).build();
