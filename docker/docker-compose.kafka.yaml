@@ -59,3 +59,18 @@ services:
     environment:
       - KAFKA_CLUSTERS_0_BOOTSTRAP_SERVERS=kafka-1:9092
       - KAFKA_CLUSTERS_0_NAME=r4zt_wrqTRuT7W2NJsB_GA
+  
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.5.0
+    container_name: schema-registry
+    depends_on:
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka-1:9092,PLAINTEXT://kafka-2:9092,PLAINTEXT://kafka-3:9092
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+    ports:
+      - "8081:8081"
+    restart: always

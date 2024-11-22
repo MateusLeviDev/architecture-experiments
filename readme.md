@@ -52,3 +52,6 @@ poderá ver o cluster criado
 
 - o cluster Kafka será o conjunto dos três brokers configurados (kafka-1, kafka-2 e kafka-3).
 - Kafka’s architecture is distributed, consisting of multiple brokers that form a Kafka cluster. Each broker is responsible for storing and managing a subset of the data across partitions. Partitions allow messages within a topic to be spread across multiple servers, enabling parallel processing and scalability.
+
+
+- https://www.baeldung.com/spring-cloud-stream-kafka-avro-confluent
