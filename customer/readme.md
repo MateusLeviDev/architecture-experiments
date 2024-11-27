@@ -80,4 +80,19 @@ Kent describes XP by a progression of ideas from broad and abstract values throu
 
 - ![Screenshot from 2024-11-26 22-24-09](https://github.com/user-attachments/assets/4ea9f685-ca44-4cc6-a985-8c3e8ab5aac1)
 
+#### 2 - using functional style
+
+Supplier -> use as the source of the data. like the producer. quando queremos produzir data usando supplier
+- supplier does not subscribe to any channel.
+- has to be triggered by some other mechanism(s)
+- usando o Supplier<Object> xxx() { `() -> { }` }   -----> este trigger pooling data every second (creating data)
+
+- pesquisar sobre outbox transaction pattern 
+
+
+##### 3 - reactive APIs
+
+- creating a new bean to send the data
+- app onde os eventos de clientes precisam ser processados reativamente, por exemplo, podemos usar o sink para emitir data
+- o que é flux? 
 

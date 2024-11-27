@@ -1,27 +1,36 @@
 package com.levi.customer.service;
 
+import com.levi.customer.controller.dto.CustomerDTO;
+import com.levi.customer.controller.dto.CustomerEvent;
 import com.levi.customer.domain.Customer;
 import com.levi.customer.domain.EmailAddress;
+import com.levi.customer.mapper.CustomerMapper;
 import com.levi.customer.repository.CustomerRepository;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Sinks;
+
+import java.time.Instant;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
-    private final StreamBridge streamBridge;
+    private final CustomerMapper customerMapper;
 
-    public CustomerServiceImpl(final CustomerRepository customerRepository, final StreamBridge streamBridge) {
+    private final Sinks.Many<CustomerEvent> customerProducer;
+
+    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapper customerMapper, Sinks.Many<CustomerEvent> customerProducer) {
         this.customerRepository = customerRepository;
-        this.streamBridge = streamBridge;
+        this.customerMapper = customerMapper;
+        this.customerProducer = customerProducer;
     }
 
-
     @Override
-    public Customer create(Customer customer) {
-        Customer customerCreated = customerRepository.save(customer);
-        streamBridge.send("customer-created-topic", customerCreated);
+    public Customer create(CustomerDTO customerDTO) {
+        Customer customerCreated = customerRepository.save(customerMapper.toModel(customerDTO));
+        var customerCreatedEvent = new CustomerEvent.CustomerCreated(customerCreated.getId(), Instant.now(), customerDTO);
+        customerProducer.tryEmitNext(customerCreatedEvent);
         return customerCreated;
     }
 
@@ -35,3 +44,4 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepository.save(customer);
     }
 }
+

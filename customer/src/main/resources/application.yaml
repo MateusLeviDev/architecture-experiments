@@ -11,3 +11,7 @@ spring.datasource:
     username: postgres
     password: postgres
 
+spring.cloud:
+    function.definition: customerEventSink
+    stream.bindings:
+        customerEventSink-out-0.destination: customer-created-topic
