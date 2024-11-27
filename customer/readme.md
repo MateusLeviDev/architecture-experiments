@@ -90,9 +90,12 @@ Supplier -> use as the source of the data. like the producer. quando queremos pr
 - pesquisar sobre outbox transaction pattern 
 
 
-##### 3 - reactive APIs
+#### 3 - reactive APIs
 
 - creating a new bean to send the data
 - app onde os eventos de clientes precisam ser processados reativamente, por exemplo, podemos usar o sink para emitir data
 - o que é flux? 
+
+
+![Screenshot from 2024-11-27 15-48-11](https://github.com/user-attachments/assets/8846e428-76c9-40ea-89b8-67ba99f9f98c)
 
