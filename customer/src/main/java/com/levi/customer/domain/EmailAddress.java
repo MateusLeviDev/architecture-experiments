@@ -1,4 +1,4 @@
-package com.levi.customer.domain.customer;
+package com.levi.customer.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

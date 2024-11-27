@@ -45,7 +45,7 @@ Reusabilidade: Como os Value Objects são definidos apenas por seus atributos, e
 
 
 
-- ![image(1).png](..%2Fimage%281%29.png)
+- ![Screenshot from 2024-11-26 22-25-47.png](..%2F..%2F..%2F..%2FPictures%2FScreenshot%20from%202024-11-26%2022-25-47.png)
 
 
 #### DDD
@@ -72,3 +72,11 @@ Evans makes clear that using the ubiquitous language in conversations with domai
 - Extreme Programming (XP) is a software development methodology:  XP was one of the first agile methods, indeed XP was the dominant agile method in the late 90s and early 00s before Scrum became dominant as the noughties passed
 
 Kent describes XP by a progression of ideas from broad and abstract values through principles, to concrete practices - a progression that I find useful to apply in many other contexts. It popularized many practices that have since been widely used in software development, including: continuous integration, refactoring, TestDrivenDevelopment, and agile planning. I particularly like its combination of technical and management practices, which make it a good fit for reaching the delivering zone of agile fluency
+
+
+#### 1 - Usando StreamBridge
+
+- ![Screenshot from 2024-11-26 22-25-58.png](..%2F..%2F..%2F..%2FPictures%2FScreenshot%20from%202024-11-26%2022-25-58.png)
+- ![Screenshot from 2024-11-26 22-24-09.png](..%2F..%2F..%2F..%2FPictures%2FScreenshot%20from%202024-11-26%2022-24-09.png)
+
+

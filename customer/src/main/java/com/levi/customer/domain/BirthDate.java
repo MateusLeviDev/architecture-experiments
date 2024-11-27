@@ -1,5 +1,6 @@
-package com.levi.customer.domain.customer;
+package com.levi.customer.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BirthDate {
 
+    @Column(name = "birthdate")
     private LocalDate value;
 
     private BirthDate(final LocalDate value) {

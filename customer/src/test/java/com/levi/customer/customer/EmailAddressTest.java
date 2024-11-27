@@ -1,6 +1,6 @@
 package com.levi.customer.customer;
 
-import com.levi.customer.domain.customer.EmailAddress;
+import com.levi.customer.domain.EmailAddress;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
