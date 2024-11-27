@@ -45,7 +45,7 @@ Reusabilidade: Como os Value Objects são definidos apenas por seus atributos, e
 
 
 
-- ![Screenshot from 2024-11-26 22-25-47.png](..%2F..%2F..%2F..%2FPictures%2FScreenshot%20from%202024-11-26%2022-25-47.png)
+- ![Screenshot from 2024-11-26 22-25-47](https://github.com/user-attachments/assets/4c906370-8278-4f07-bc61-4138ca017185)
 
 
 #### DDD
@@ -76,7 +76,8 @@ Kent describes XP by a progression of ideas from broad and abstract values throu
 
 #### 1 - Usando StreamBridge
 
-- ![Screenshot from 2024-11-26 22-25-58.png](..%2F..%2F..%2F..%2FPictures%2FScreenshot%20from%202024-11-26%2022-25-58.png)
-- ![Screenshot from 2024-11-26 22-24-09.png](..%2F..%2F..%2F..%2FPictures%2FScreenshot%20from%202024-11-26%2022-24-09.png)
+- ![Screenshot from 2024-11-26 22-25-58](https://github.com/user-attachments/assets/576e24a8-8cc4-4d13-b892-fab424acf1a9)
+
+- ![Screenshot from 2024-11-26 22-24-09](https://github.com/user-attachments/assets/4ea9f685-ca44-4cc6-a985-8c3e8ab5aac1)
 
 
