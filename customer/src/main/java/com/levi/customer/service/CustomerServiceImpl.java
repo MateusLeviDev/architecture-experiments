@@ -6,7 +6,6 @@ import com.levi.customer.domain.Customer;
 import com.levi.customer.domain.EmailAddress;
 import com.levi.customer.mapper.CustomerMapper;
 import com.levi.customer.repository.CustomerRepository;
-import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Sinks;
 
@@ -44,4 +43,3 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepository.save(customer);
     }
 }
-

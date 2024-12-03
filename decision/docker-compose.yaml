@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: postgres
+    container_name: decision-postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: decision_db
+    ports:
+      - "5433:5432"

@@ -1,16 +1,19 @@
 spring.devtools.restart.enabled: false
 
+server.port: 8081
+
 spring.jpa.show-sql: true
 spring.jpa.hibernate.ddl-auto: create
 spring.jpa.properties.hibernate.format_sql: true
 spring.jpa.database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 spring.datasource:
-    url: jdbc:postgresql://localhost:5432/customer_db
+    url: jdbc:postgresql://localhost:5433/decision_db
     username: postgres
     password: postgres
 
 spring.cloud:
-    function.definition: customerEventSink
+    function.definition: processCustomerCreated
     stream.bindings:
-        customerEventSink-out-0.destination: customer-created-topic
+        processCustomerCreated-in-0.destination: customer-created-topic
+        processCustomerCreated-out-0.destination: decision-topic

@@ -90,9 +90,40 @@ Supplier -> use as the source of the data. like the producer. quando queremos pr
 - pesquisar sobre outbox transaction pattern 
 
 
-##### 3 - reactive APIs
+#### 3 - reactive APIs
 
 - creating a new bean to send the data
 - app onde os eventos de clientes precisam ser processados reativamente, por exemplo, podemos usar o sink para emitir data
 - o que é flux? 
 
+#### como esse `private final Sinks.Many<CustomerEvent> customerProducer;` sabe que vai chamar o customerEventSink?
+
+- garantir que o bean configurado seja injetado corretamente no serviço. O Spring fará o mapeamento automaticamente com base no contexto.
+- o método `customerCreatedEventStream` cria um bean do tipo `Sinks.Many<CustomerEvent>`
+- bean configurado para emitir eventos usando um ReplayProcessor com o valor mais recente. Ou seja, ele pode reemitir o último evento se necessário.
+- ou seja, em seguida esse bean encapsula o `Sinks.Many<CustomerEvent>` em um `Supplier<Flux<CustomerEvent>>`
+
+```
+
+- Sinks.Many é um tipo de sink que pode ser usado para emitir dados para múltiplos consumidores.
+- O asFlux() transforma esse sink em um fluxo (Flux). O Flux é a representação de um fluxo de elementos no Reactor, ou seja, uma sequência de valores que pode ser consumida de forma assíncrona e reativa.
+- customerCreatedEventStream() retorna um Sinks.Many<CustomerEvent>. Esse sink irá armazenar e emitir os eventos CustomerEvent para quem assinar o fluxo. [ver yaml, testar definir mult topics nesta definition]
+- asFlux() é útil quando você quer permitir que múltiplos consumidores possam ouvir e processar os dados emitidos por um único ponto de emissão (o sink)
+
+```
+
+- O Spring Cloud Stream utiliza esse Supplier para vincular o produtor ao tópico Kafka configurado no application.properties. --> .yaml
+- Quando o customerProducer chama tryEmitNext, ele envia o evento para o fluxo configurado, que será consumido pelo Supplier<Flux<CustomerEvent>>.
+- `@Configuration` --->  indica que a classe contém definições de beans do Spring e que esses beans devem ser registrados no Application Context (container central que gerencia o ciclo de vida dos beans e fornece funcionalidades)
+- Classes anotadas com @Configuration são proxies gerenciados pelo Spring. Isso significa que o Spring garante que cada bean seja um singleton (existe apenas uma instância), mesmo que o método seja chamado várias vezes
+- use case: No caso de Sinks.Many<CustomerEvent>, se você tivesse várias instâncias dessa classe, cada uma consumiria recursos para gerenciar os fluxos. Usando o escopo singleton, o Spring cria apenas uma instância de Sinks.Many<CustomerEvent>, e ela pode ser reutilizada em toda a aplicação, o que economiza recursos e melhora a eficiência.
+- estado mantido consistentemente em toda a aplicação
+- No Spring WebFlux a operação pode ser tratada de maneira assíncrona, onde o fluxo de dados vai sendo construído e consumido enquanto a operação de I/O (request HTTP ou acesso ao banco) não está bloqueando o thread do servidor.
+- reactive -> paradigma
+- Sinks.Many<CustomerEvent> é instanciado diretamente na classe de serviço porque ele é o canal de emissão de eventos. Sua responsabilidade é emitir eventos para os consumidores reativos. A classe de serviço é onde você emite esses eventos com o uso do método tryEmitNext().
+- CustomerMessaging é apenas uma classe de configuração e não deve ser usada diretamente em sua lógica de serviço. Sua função é criar e registrar beans no contexto do Spring para que outros componentes, como o Sinks.Many<CustomerEvent>, possam ser utilizados em outras partes do código.
+
+- https://docs.docker.com/guides/kafka/
+
+
+#### Consumer
