@@ -130,3 +130,12 @@ Supplier -> use as the source of the data. like the producer. quando queremos pr
 
 - function: pure java. accepts a message input and producer one or more messages. entender o conceito de transformer, for example enterprise integration patterns or translator 
 - podemos transformar as mensagens, ou seja, ajustando conforme nosso payload
+
+- use cases:
+![Screenshot from 2024-12-03 18-58-08](https://github.com/user-attachments/assets/882cc403-326d-4933-958c-804002201faf)
+
+
+![Screenshot from 2024-12-03 19-00-26 (copy)](https://github.com/user-attachments/assets/bb43bb47-7454-49ee-a89c-83fdd2df238e)
+
+![Screenshot from 2024-12-03 18-59-54](https://github.com/user-attachments/assets/ea779b79-fd87-4cf9-a062-9d30d9995983)
+
