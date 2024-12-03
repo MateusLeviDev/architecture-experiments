@@ -127,3 +127,5 @@ Supplier -> use as the source of the data. like the producer. quando queremos pr
 
 
 #### Consumer
+![Screenshot from 2024-11-27 15-48-11](https://github.com/user-attachments/assets/8846e428-76c9-40ea-89b8-67ba99f9f98c)
+
