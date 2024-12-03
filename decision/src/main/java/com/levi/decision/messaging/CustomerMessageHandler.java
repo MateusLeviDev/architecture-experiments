@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 
 @Component
@@ -19,18 +20,14 @@ public class CustomerMessageHandler {
 
     private final DecisionMakerService decisionMakerService;
 
-
     @Bean
-    public Consumer<CustomerEvent.CustomerCreated> processCustomerCreated() {
-        return this::handle;
-
+    public Function<CustomerEvent.CustomerCreated, Decision> processCustomerCreated() {
+        return customerCreated -> {
+            log.info("Processing event 'CustomerCreated': {}", customerCreated);
+            CustomerDTO customer = customerCreated.customer();
+            Decision decision = decisionMakerService.decide(customer.ssn(), customer.birthDate());
+            log.info("Processed request for customer SSN [{}]. Result: {}", customer.ssn(), decision);
+            return decision;
+        };
     }
-
-    private void handle(CustomerEvent.CustomerCreated customerCreated) {
-        log.info("Processing event 'CustomerCreated': {}", customerCreated);
-        CustomerDTO customer = customerCreated.customer();
-        Decision decision = decisionMakerService.decide(customer.ssn(), customer.birthDate());
-        log.info("Processed request for customer SSN [{}]. Result: {}", customer.ssn(), decision);
-    }
-
 }
