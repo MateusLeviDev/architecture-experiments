@@ -128,6 +128,9 @@ Supplier -> use as the source of the data. like the producer. quando queremos pr
 
 #### Consumer
 
+![Screenshot from 2024-11-27 15-48-11](https://github.com/user-attachments/assets/3f9d67ba-358d-4555-b913-4956f5cb7efc)
+
+
 - function: pure java. accepts a message input and producer one or more messages. entender o conceito de transformer, for example enterprise integration patterns or translator 
 - podemos transformar as mensagens, ou seja, ajustando conforme nosso payload
 
