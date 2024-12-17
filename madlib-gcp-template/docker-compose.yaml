@@ -1,9 +1,9 @@
 services:
   postgres:
     image: postgres
-    container_name: postgres-client-db
+    container_name: postgres-charges-db
     environment:
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: individual-client
+      POSTGRES_DB: charges
     ports:
       - "5432:5432"

@@ -27,7 +27,7 @@ public class PubSubConfig {
     public PubSubInboundChannelAdapter messageChannelAdapter(
             @Qualifier("inputChannel") final MessageChannel inputChannel, final PubSubTemplate pubSubTemplate) {
         final PubSubInboundChannelAdapter adapter = new PubSubInboundChannelAdapter(
-                pubSubTemplate, "MySub");
+                pubSubTemplate, "test-topic-sub");
         adapter.setOutputChannel(inputChannel);
         adapter.setPayloadType(TaxDTO.class);
         adapter.setAckMode(AckMode.MANUAL);

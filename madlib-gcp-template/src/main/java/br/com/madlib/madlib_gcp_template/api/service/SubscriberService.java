@@ -26,14 +26,34 @@ public class SubscriberService {
         log.info("Message received from GCP PubSub: {}", payload);
 
         try {
+            if ("error".equalsIgnoreCase(payload.name())) {
+                throw new RuntimeException("Simulated error for DLQ topic");
+            }
+
             taxService.processMessage(payload);
             message.ack();
         } catch (final ObjectRetrievalFailureException ore) {
             log.debug("Message Published to DLQ");
-//            pubSubTemplate.publish("MyDLQ", payload);
-//            message.ack();
+            handleDeliveryAttempt(payload, message);
         } catch (final Exception e) {
             log.error("Failed to process message", e);
+            handleDeliveryAttempt(payload, message);
         }
+    }
+
+    private void handleDeliveryAttempt(Object payload, BasicAcknowledgeablePubsubMessage message) {
+        final var deliveryAttempt = getDeliveryAttempt(message);
+        log.debug("Delivery attempt {}", deliveryAttempt);
+        if (Integer.parseInt(deliveryAttempt) >= 5) {
+            pubSubTemplate.publish("test-topic-dlq", payload);
+            message.ack();
+        } else {
+            message.nack();
+        }
+    }
+
+    private String getDeliveryAttempt(BasicAcknowledgeablePubsubMessage message) {
+        return message.getPubsubMessage()
+                .getAttributesOrDefault("googclient_deliveryattempt", "0");
     }
 }
