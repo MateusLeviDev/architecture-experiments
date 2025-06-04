@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    gcp:
+      project-id: emulator
+      pubsub:
+        emulator-host: localhost:8085
+        subscriber:
+          executor-threads: 2
+        topic:
+          employee-batch-regulatory-validated-tpc: employee-batch-regulatory-validated
+        subscriptions:
+          employee-batch-regulatory-validated-sub: employee-batch-regulatory-validated-sub
+        dlq:
+          employee-batch-regulatory-validated-dlq: employee-batch-regulatory-validated-dlq
