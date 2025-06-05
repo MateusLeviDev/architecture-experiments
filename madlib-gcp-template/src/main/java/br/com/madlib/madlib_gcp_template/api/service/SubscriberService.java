@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class SubscriberService {
 
     public static final int MAX_RETRIES = 5;
+    public static final String GOOGLE_DELIVERY_ATTEMPT = "googclient_deliveryattempt";
 
     private final PubSubTemplate pubSubTemplate;
 
@@ -43,7 +44,7 @@ public class SubscriberService {
             BasicAcknowledgeablePubsubMessage message,
             String dlqTopicId) {
         final var deliveryAttempt = getDeliveryAttempt(message);
-        log.debug("Delivery attempt {}", deliveryAttempt);
+        log.info("Delivery attempt {}", deliveryAttempt);
         if (deliveryAttempt >= MAX_RETRIES) {
             pubSubTemplate.publish(dlqTopicId, payload);
             log.error("Max Delivery attempts exceeded: {}. Moving to DLQ {}", MAX_RETRIES, dlqTopicId);
@@ -54,6 +55,7 @@ public class SubscriberService {
     }
 
     private static int getDeliveryAttempt(BasicAcknowledgeablePubsubMessage message) {
-        return Integer.parseInt(message.getPubsubMessage().getAttributesOrDefault("googclient_deliveryattempt", "1"));
+        return Integer.parseInt(
+                message.getPubsubMessage().getAttributesOrDefault(GOOGLE_DELIVERY_ATTEMPT, "1"));
     }
 }
