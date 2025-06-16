@@ -1,6 +1,7 @@
-package br.com.madlib.madlib_gcp_template.api.service;
+package br.com.madlib.madlib_gcp_template.service;
 
-import br.com.madlib.madlib_gcp_template.api.dto.BatchRegulatoryDTO;
+import br.com.madlib.madlib_gcp_template.dto.BatchRegulatoryDTO;
+import br.com.madlib.madlib_gcp_template.handlers.HandlerRegistry;
 import com.google.cloud.spring.pubsub.core.PubSubTemplate;
 import com.google.cloud.spring.pubsub.support.BasicAcknowledgeablePubsubMessage;
 import com.google.cloud.spring.pubsub.support.GcpPubSubHeaders;
@@ -21,6 +22,8 @@ public class SubscriberService {
 
     private final PubSubTemplate pubSubTemplate;
 
+    private final HandlerRegistry handlerRegistry;
+
     @Value("${spring.cloud.gcp.pubsub.dlq.employee-batch-regulatory-validated-dlq}")
     private String employeeBatchRegulatoryValidatedDlq;
 
@@ -32,6 +35,7 @@ public class SubscriberService {
         log.info("Message received from GCP PubSub: {}", payload);
 
         try {
+            handlerRegistry.dispatch(payload);
             message.ack();
         } catch (final Exception e) {
             log.error("Failed to process message", e);
@@ -39,10 +43,7 @@ public class SubscriberService {
         }
     }
 
-    private void handleDeliveryAttempt(
-            Object payload,
-            BasicAcknowledgeablePubsubMessage message,
-            String dlqTopicId) {
+    private void handleDeliveryAttempt(Object payload, BasicAcknowledgeablePubsubMessage message, String dlqTopicId) {
         final var deliveryAttempt = getDeliveryAttempt(message);
         log.info("Delivery attempt {}", deliveryAttempt);
         if (deliveryAttempt >= MAX_RETRIES) {

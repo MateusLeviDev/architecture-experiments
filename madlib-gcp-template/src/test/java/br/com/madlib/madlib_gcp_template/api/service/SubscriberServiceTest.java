@@ -1,6 +1,8 @@
 package br.com.madlib.madlib_gcp_template.api.service;
 
-import br.com.madlib.madlib_gcp_template.api.dto.BatchRegulatoryDTO;
+import br.com.madlib.madlib_gcp_template.dto.BatchRegulatoryDTO;
+import br.com.madlib.madlib_gcp_template.handlers.HandlerRegistry;
+import br.com.madlib.madlib_gcp_template.service.SubscriberService;
 import com.google.cloud.spring.pubsub.core.PubSubTemplate;
 import com.google.cloud.spring.pubsub.support.BasicAcknowledgeablePubsubMessage;
 import com.google.pubsub.v1.PubsubMessage;
@@ -27,6 +29,9 @@ class SubscriberServiceTest {
 
     @Mock
     private PubSubTemplate pubSubTemplate;
+
+    @Mock
+    private HandlerRegistry handlerRegistry;
 
     @InjectMocks
     private SubscriberService subscriberService;

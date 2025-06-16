@@ -1,6 +1,6 @@
 package br.com.madlib.madlib_gcp_template.infrastructure.pubsub;
 
-import br.com.madlib.madlib_gcp_template.api.dto.BatchRegulatoryDTO;
+import br.com.madlib.madlib_gcp_template.dto.BatchRegulatoryDTO;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.spring.pubsub.core.PubSubTemplate;
