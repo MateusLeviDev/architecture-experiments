@@ -9,5 +9,7 @@
   - PubSubInboundChannelAdapter: faz a ponte entre Google Pub/Sub e o Spring Integration, lê a mensagem, converte para DTO, envia para um canal Spring.
   - MessageChannel (DirectChannel): canal que entrega a mensagem para o método consumidor.
   - @ServiceActivator: método que processa a mensagem, com acesso ao payload e à mensagem original (para ack/nack manual).
+  - usando Strategy pattern para delegar comportamentos a classes com interfaces em comum. (Open/Closed Principle?)
+  - usando Registry para dispatch centralizado 
 
 </details>
