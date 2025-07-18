@@ -16,7 +16,7 @@
 
 
 <details>
-  <summary>eature/BLUE20250717-aws-s3-lambda</summary>
+  <summary>feature/BLUE20250717-aws-s3-lambda</summary>
 
   - simulando AWS localmente
   - exemplos de uso
