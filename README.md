@@ -1,1 +1,3 @@
-- ![alt text](<Screenshot from 2025-07-18 15-11-36.png>)
+- baixei aws-cli e setei as configs default
+- da pra usar pelo container o awslocal
+- O awslocal é um wrapper do AWS CLI que já configura automaticamente o endpoint para http://localhost:4566. sem precisar definir manualmente AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY ou AWS_DEFAULT_REGION...
