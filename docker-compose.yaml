@@ -1,15 +1,17 @@
-version: "3.8"
-
+version: '3.9'
 services:
-  localstack:
-    container_name: localstack
+  # api: # This is your service
+  #   build:
+  #     ...
+  #   environment:
+  #     # Set an env var to use later in the code
+  #     AWS_ENDPOINT: http://localstack:4566
+  localstack: # LocalStack container
     image: localstack/localstack:latest
     ports:
-      - "4566:4566"
-    environment:
-      - SERVICES=s3,lambda
-      - LAMBDA_EXECUTOR=docker-reuse
-      - DOCKER_HOST=unix:///var/run/docker.sock
+      # Map the port so you can access the API from the host machine
+      - 4566:4566
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "./:/docker-entrypoint-initaws.d"
+      # Here you mount your setup file so it will be executed
+      # when the container starts
+      - ./init:/etc/localstack/init/ready.d
