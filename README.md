@@ -13,3 +13,16 @@
   - usando Registry para dispatch centralizado 
 
 </details>
+
+---
+
+
+<details>
+  <summary>eature/BLUE20250717-aws-s3-lambda</summary>
+
+  - simulando AWS localmente
+  - exemplos de uso
+  - base para estudo de open tofu e automatizações a partir disso
+  - confira branch
+
+</details>
