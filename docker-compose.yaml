@@ -8,10 +8,15 @@ services:
   #     AWS_ENDPOINT: http://localstack:4566
   localstack: # LocalStack container
     image: localstack/localstack:latest
+    container_name: localstack
     ports:
       # Map the port so you can access the API from the host machine
       - 4566:4566
+    environment:
+      - SERVICES=s3,lambda
+      - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       # Here you mount your setup file so it will be executed
       # when the container starts
-      - ./init:/etc/localstack/init/ready.d
+      # - ./init:/etc/localstack/init/ready.d
+      - /var/run/docker.sock:/var/run/docker.sock
